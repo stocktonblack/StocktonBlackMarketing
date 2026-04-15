@@ -1031,10 +1031,11 @@ footer {
     <div>
       <p class="section-label">Quick Note</p>
       <div style="display:flex;flex-direction:column;gap:1rem;margin-top:1rem;">
-        <input type="text" placeholder="Your name" style="background:var(--bg-1);border:1px solid var(--border-mid);color:var(--white);font-family:var(--sans);font-size:0.85rem;padding:0.9rem 1.2rem;outline:none;border-radius:4px;width:100%;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-mid)'">
-        <input type="email" placeholder="Your email" style="background:var(--bg-1);border:1px solid var(--border-mid);color:var(--white);font-family:var(--sans);font-size:0.85rem;padding:0.9rem 1.2rem;outline:none;border-radius:4px;width:100%;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-mid)'">
-        <textarea placeholder="Tell me about your project..." rows="5" style="background:var(--bg-1);border:1px solid var(--border-mid);color:var(--white);font-family:var(--sans);font-size:0.85rem;padding:0.9rem 1.2rem;outline:none;border-radius:4px;width:100%;resize:vertical;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-mid)'"></textarea>
-        <button class="btn-primary" style="align-self:flex-start;" onclick="alert('Thanks! Stockton will get back to you within 24 hours.')">Send Message</button>
+        <input type="text" id="form-name" placeholder="Your name" style="background:var(--bg-1);border:1px solid var(--border-mid);color:var(--white);font-family:var(--sans);font-size:0.85rem;padding:0.9rem 1.2rem;outline:none;border-radius:4px;width:100%;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-mid)'">
+        <input type="email" id="form-email" placeholder="Your email" style="background:var(--bg-1);border:1px solid var(--border-mid);color:var(--white);font-family:var(--sans);font-size:0.85rem;padding:0.9rem 1.2rem;outline:none;border-radius:4px;width:100%;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-mid)'">
+        <textarea id="form-message" placeholder="Tell me about your project..." rows="5" style="background:var(--bg-1);border:1px solid var(--border-mid);color:var(--white);font-family:var(--sans);font-size:0.85rem;padding:0.9rem 1.2rem;outline:none;border-radius:4px;width:100%;resize:vertical;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-mid)'"></textarea>
+        <button class="btn-primary" id="form-btn" style="align-self:flex-start;" onclick="submitForm()">Send Message</button>
+        <p id="form-status" style="font-family:var(--mono);font-size:0.72rem;color:var(--green);display:none;"></p>
       </div>
     </div>
   </section>
@@ -1052,6 +1053,50 @@ footer {
 </div>
 
 <script>
+async function submitForm() {
+  const name = document.getElementById('form-name').value.trim();
+  const email = document.getElementById('form-email').value.trim();
+  const message = document.getElementById('form-message').value.trim();
+  const btn = document.getElementById('form-btn');
+  const status = document.getElementById('form-status');
+
+  if (!name || !email || !message) {
+    status.style.color = '#ff6b6b';
+    status.textContent = 'Please fill in all fields before sending.';
+    status.style.display = 'block';
+    return;
+  }
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('https://formspree.io/f/xkokozzn', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name, email, message })
+    });
+
+    if (res.ok) {
+      status.style.color = 'var(--green)';
+      status.textContent = '✓ Message sent! Stockton will get back to you within 24 hours.';
+      status.style.display = 'block';
+      document.getElementById('form-name').value = '';
+      document.getElementById('form-email').value = '';
+      document.getElementById('form-message').value = '';
+      btn.textContent = 'Sent!';
+    } else {
+      throw new Error('Failed');
+    }
+  } catch {
+    status.style.color = '#ff6b6b';
+    status.textContent = 'Something went wrong. Please email stocktonblack33@gmail.com directly.';
+    status.style.display = 'block';
+    btn.textContent = 'Send Message';
+    btn.disabled = false;
+  }
+}
+
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');

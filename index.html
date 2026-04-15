@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stockton Black Advertising</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Stockton Black — VFX, Motion Design & Advertising</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
   --bg: #0a0a0a;
-  --bg-1: #111;
+  --bg-1: #111111;
   --bg-2: #161616;
   --border: rgba(255,255,255,0.07);
-  --border-hover: rgba(255,255,255,0.14);
+  --border-mid: rgba(255,255,255,0.12);
   --green: #3ddc84;
-  --green-soft: rgba(61,220,132,0.1);
-  --green-muted: #2bb86d;
+  --green-dim: rgba(61,220,132,0.1);
+  --green-muted: rgba(61,220,132,0.45);
   --white: #f0ede8;
-  --muted: rgba(240,237,232,0.42);
+  --muted: rgba(240,237,232,0.45);
   --muted-2: rgba(240,237,232,0.18);
   --serif: 'DM Serif Display', Georgia, serif;
   --sans: 'DM Sans', system-ui, sans-serif;
+  --mono: 'DM Mono', monospace;
 }
 
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--bg);
   color: var(--white);
@@ -35,31 +35,33 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* NAV */
+/* ── PAGE SYSTEM ── */
+.page { display: none; min-height: 100vh; }
+.page.active { display: block; }
+
+/* ── NAV ── */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 100;
+  z-index: 200;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 3.5rem;
-  background: rgba(10,10,10,0.88);
+  padding: 1.4rem 4rem;
+  background: rgba(10,10,10,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
 }
 
 .nav-logo {
-  font-family: var(--sans);
-  font-weight: 500;
-  font-size: 0.9rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-family: var(--serif);
+  font-size: 1.15rem;
   color: var(--white);
+  cursor: pointer;
   text-decoration: none;
+  letter-spacing: 0.01em;
 }
-
-.nav-logo em { font-style: normal; color: var(--green); }
+.nav-logo em { color: var(--green); font-style: italic; }
 
 .nav-links {
   display: flex;
@@ -68,930 +70,1006 @@ nav {
   list-style: none;
 }
 
-.nav-links a {
+.nav-links button {
+  font-family: var(--sans);
   font-size: 0.8rem;
   font-weight: 400;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   color: var(--muted);
-  text-decoration: none;
-  transition: color 0.25s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0;
 }
-
-.nav-links a:hover { color: var(--white); }
+.nav-links button:hover, .nav-links button.active { color: var(--white); }
 
 .nav-cta {
-  font-size: 0.78rem !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.08em !important;
   color: var(--bg) !important;
-  background: var(--green);
-  padding: 0.55rem 1.4rem;
-  border-radius: 100px;
+  background: var(--green) !important;
+  padding: 0.5rem 1.4rem !important;
+  border-radius: 100px !important;
+  font-weight: 500 !important;
   transition: opacity 0.2s !important;
 }
+.nav-cta:hover { opacity: 0.85 !important; }
 
-.nav-cta:hover { opacity: 0.85; color: var(--bg) !important; }
-
-/* HERO */
+/* ── HERO ── */
 .hero {
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  padding: 8rem 3.5rem 5rem;
-  gap: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10rem 4rem 6rem;
   position: relative;
+  overflow: hidden;
 }
 
-.hero::after {
+.hero::before {
   content: '';
   position: absolute;
-  top: 15%; right: 3%;
-  width: 500px; height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(61,220,132,0.035) 0%, transparent 70%);
+  top: -200px; right: -200px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(61,220,132,0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+.hero-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
   color: var(--green);
-  margin-bottom: 2.5rem;
-}
-
-.hero-dot {
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--green);
-}
-
-h1 {
-  font-family: var(--serif);
-  font-size: clamp(3rem, 4.5vw, 4.6rem);
-  font-weight: 400;
-  line-height: 1.08;
-  color: var(--white);
+  text-transform: uppercase;
   margin-bottom: 1.8rem;
-  letter-spacing: -0.01em;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.1s forwards;
 }
 
-h1 em { font-style: italic; color: var(--green); }
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  line-height: 1;
+  font-weight: 400;
+  max-width: 900px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.25s forwards;
+}
+
+.hero h1 em { color: var(--green); font-style: italic; }
 
 .hero-sub {
-  font-size: 0.96rem;
-  font-weight: 300;
+  font-size: 1.1rem;
   color: var(--muted);
-  line-height: 1.9;
-  max-width: 390px;
-  margin-bottom: 3rem;
+  max-width: 520px;
+  line-height: 1.7;
+  margin-top: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.4s forwards;
 }
 
 .hero-actions {
   display: flex;
-  align-items: center;
   gap: 1.2rem;
+  margin-top: 2.8rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.55s forwards;
 }
 
 .btn-primary {
-  background: var(--green);
-  color: var(--bg);
   font-family: var(--sans);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.06em;
+  background: var(--green);
+  color: var(--bg);
+  border: none;
   padding: 0.85rem 2rem;
   border-radius: 100px;
-  border: none;
   cursor: pointer;
+  transition: opacity 0.2s;
   text-decoration: none;
   display: inline-block;
-  transition: opacity 0.2s, transform 0.2s;
 }
+.btn-primary:hover { opacity: 0.85; }
 
-.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-
-.btn-ghost {
-  background: transparent;
-  color: var(--muted);
+.btn-outline {
   font-family: var(--sans);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 400;
-  letter-spacing: 0.04em;
-  padding: 0.85rem 0;
-  border: none;
+  letter-spacing: 0.06em;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--border-mid);
+  padding: 0.85rem 2rem;
+  border-radius: 100px;
   cursor: pointer;
+  transition: border-color 0.2s;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  transition: color 0.2s;
+  display: inline-block;
+}
+.btn-outline:hover { border-color: rgba(255,255,255,0.35); }
+
+/* ── STATS STRIP ── */
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin: 0 4rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.7s forwards;
 }
 
-.btn-ghost:hover { color: var(--white); }
-.btn-ghost span { transition: transform 0.2s; }
-.btn-ghost:hover span { transform: translateX(3px); }
-
-/* Hero stat panel */
-.hero-right {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
+.stat-item {
+  padding: 2.2rem 2rem;
+  border-right: 1px solid var(--border);
+  position: relative;
 }
-
-.stat-card {
-  background: var(--bg-1);
-  padding: 2rem 2.2rem;
-  transition: background 0.25s;
+.stat-item:last-child { border-right: none; }
+.stat-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 2px; height: 0;
+  background: var(--green);
+  transition: height 0.4s ease;
 }
-
-.stat-card:hover { background: var(--bg-2); }
+.stat-item:hover::before { height: 100%; }
 
 .stat-num {
   font-family: var(--serif);
-  font-size: 2.8rem;
-  font-weight: 400;
-  color: var(--white);
+  font-size: 2.4rem;
+  color: var(--green);
   line-height: 1;
-  margin-bottom: 0.4rem;
+  font-style: italic;
 }
-
-.stat-num em { font-style: normal; color: var(--green); }
 
 .stat-label {
-  font-size: 0.78rem;
-  font-weight: 300;
-  color: var(--muted);
-}
-
-/* TICKER */
-.ticker {
-  overflow: hidden;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 1rem 0;
-  white-space: nowrap;
-}
-
-.ticker-track {
-  display: inline-flex;
-  animation: ticker 30s linear infinite;
-}
-
-.ticker-item {
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding: 0 1.8rem;
-}
-
-.ticker-sep { color: var(--green); opacity: 0.4; }
-
-@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-/* SECTIONS */
-section { padding: 7rem 3.5rem; }
-
-.label {
-  font-size: 0.68rem;
-  font-weight: 500;
+  font-family: var(--mono);
+  font-size: 0.62rem;
   letter-spacing: 0.2em;
+  color: var(--muted);
   text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 1.2rem;
+  margin-top: 0.5rem;
 }
 
-h2 {
+/* ── SECTION BASE ── */
+.section {
+  padding: 7rem 4rem;
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  max-width: 60px;
+  height: 1px;
+  background: var(--green-muted);
+}
+
+.section-title {
   font-family: var(--serif);
-  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 400;
   line-height: 1.1;
-  color: var(--white);
-  letter-spacing: -0.01em;
+  max-width: 700px;
 }
+.section-title em { color: var(--green); font-style: italic; }
 
-h2 em { font-style: italic; color: var(--green); }
-
-.section-sub {
-  font-size: 0.92rem;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.9;
-  max-width: 380px;
-}
-
-/* SERVICES */
-.services { background: var(--bg-1); }
-
-.services-top {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: end;
-  margin-bottom: 4rem;
-}
-
+/* ── SERVICES GRID ── */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: var(--border);
+  margin-top: 3.5rem;
   border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
 }
 
-.svc {
-  background: var(--bg-1);
-  padding: 2.5rem;
+.service-card {
+  background: var(--bg);
+  padding: 2.4rem 2rem;
+  position: relative;
+  overflow: hidden;
   transition: background 0.3s;
 }
+.service-card:hover { background: var(--bg-1); }
 
-.svc:hover { background: var(--bg-2); }
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--green), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.service-card:hover::before { transform: scaleX(1); }
 
-.svc-num {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 0.82rem;
-  color: var(--green);
-  opacity: 0.6;
-  margin-bottom: 2rem;
+.service-icon {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
 }
 
-.svc-icon {
-  width: 38px; height: 38px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  transition: border-color 0.3s, background 0.3s;
-}
-
-.svc:hover .svc-icon {
-  border-color: rgba(61,220,132,0.28);
-  background: var(--green-soft);
-}
-
-.svc-icon svg {
-  width: 17px; height: 17px;
-  stroke: var(--green);
-  fill: none;
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.svc h3 {
-  font-family: var(--sans);
-  font-size: 0.96rem;
+.service-name {
+  font-size: 0.95rem;
   font-weight: 500;
   color: var(--white);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.02em;
 }
 
-.svc p {
-  font-size: 0.84rem;
-  font-weight: 300;
+.service-desc {
+  font-size: 0.8rem;
   color: var(--muted);
-  line-height: 1.85;
-  margin-bottom: 1.8rem;
+  line-height: 1.7;
 }
 
-.svc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-
-.tag {
-  font-size: 0.62rem;
+.service-price {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--green);
+  margin-top: 1.2rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+}
+
+/* ── CLIENTS ── */
+.clients-section { padding: 5rem 4rem; border-top: 1px solid var(--border); }
+
+.clients-label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  color: var(--muted-2);
   text-transform: uppercase;
-  color: var(--green);
-  background: var(--green-soft);
-  border: 1px solid rgba(61,220,132,0.14);
-  padding: 0.28rem 0.7rem;
-  border-radius: 100px;
+  text-align: center;
+  margin-bottom: 2.5rem;
 }
 
-/* PROCESS */
-.process { background: var(--bg); }
-
-.process-layout {
+.clients-grid {
   display: grid;
-  grid-template-columns: 5fr 4fr;
-  gap: 7rem;
-  align-items: start;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
 }
 
-.process-head { margin-bottom: 3.5rem; }
+.client-item {
+  background: var(--bg);
+  padding: 1.4rem 1rem;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  transition: background 0.2s, color 0.2s;
+}
+.client-item:hover { background: var(--bg-1); color: var(--white); }
+.client-item.featured { color: var(--green); background: var(--green-dim); }
 
-.step {
+/* ── PROCESS ── */
+.process-grid {
   display: grid;
-  grid-template-columns: 52px 1fr;
-  gap: 1.5rem;
-  padding: 2rem 0;
-  border-bottom: 1px solid var(--border);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 3.5rem;
+  position: relative;
 }
 
-.step:last-child { border-bottom: none; }
+.process-grid::before {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--green-muted), transparent);
+  opacity: 0.4;
+}
 
-.step-n {
+.process-step { text-align: center; padding: 0 1rem; }
+
+.step-num {
   font-family: var(--serif);
-  font-style: italic;
-  font-size: 0.82rem;
+  font-size: 2rem;
   color: var(--green);
-  opacity: 0.55;
-  padding-top: 0.1rem;
+  display: block;
+  margin-bottom: 1rem;
+  font-style: italic;
 }
 
-.step h3 {
-  font-family: var(--sans);
-  font-size: 0.93rem;
+.step-title {
+  font-size: 0.82rem;
   font-weight: 500;
   color: var(--white);
   margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
 }
 
-.step p {
-  font-size: 0.84rem;
-  font-weight: 300;
+.step-desc {
+  font-size: 0.75rem;
   color: var(--muted);
-  line-height: 1.85;
+  line-height: 1.65;
 }
 
-.aside {
-  position: sticky;
-  top: 8rem;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.aside-main {
+/* ── TESTIMONIAL ── */
+.testimonial-section {
+  padding: 6rem 4rem;
   background: var(--bg-1);
-  padding: 2.5rem;
+  border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
 
-.aside-big {
-  font-family: var(--serif);
-  font-size: 4rem;
-  font-weight: 400;
-  color: var(--green);
-  line-height: 1;
-  margin-bottom: 0.7rem;
+.testimonial {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.aside-desc {
-  font-size: 0.82rem;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.8;
-}
-
-.aside-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--border);
-}
-
-.aside-mini {
-  background: var(--bg-1);
-  padding: 1.4rem 1.6rem;
-  transition: background 0.2s;
-}
-
-.aside-mini:hover { background: var(--bg-2); }
-
-.aside-mini-num {
+.testimonial-quote {
   font-family: var(--serif);
   font-size: 1.6rem;
+  line-height: 1.5;
   font-weight: 400;
+  font-style: italic;
   color: var(--white);
-  line-height: 1;
-  margin-bottom: 0.3rem;
+  margin-bottom: 2rem;
 }
 
-.aside-mini-label {
-  font-size: 0.66rem;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.testimonial-quote em { color: var(--green); }
+
+.testimonial-author {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
   color: var(--muted);
+  text-transform: uppercase;
 }
 
-/* RESULTS */
-.results { background: var(--bg-1); }
-
-.results-top {
+/* ── CTA SECTION ── */
+.cta-section {
+  padding: 7rem 4rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: end;
-  margin-bottom: 4rem;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 4rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.results-grid {
+.cta-section::before {
+  content: 'SB';
+  position: absolute;
+  right: 3rem;
+  bottom: -2rem;
+  font-family: var(--serif);
+  font-size: 14rem;
+  color: rgba(61,220,132,0.03);
+  line-height: 1;
+  pointer-events: none;
+  font-style: italic;
+}
+
+.cta-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+.cta-title em { color: var(--green); font-style: italic; }
+
+.cta-sub {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 1rem;
+  max-width: 500px;
+}
+
+.cta-contact { text-align: right; flex-shrink: 0; }
+
+.cta-contact p {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 2.4;
+}
+.cta-contact p span { color: var(--green); font-weight: 500; }
+
+/* ── SERVICES PAGE ── */
+.services-hero {
+  padding: 10rem 4rem 5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.services-detail {
+  padding: 5rem 4rem;
+}
+
+.services-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 3rem;
+}
+
+.service-detail-card {
+  background: var(--bg);
+  padding: 3rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-detail-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: var(--green);
+  transition: height 0.4s ease;
+}
+.service-detail-card:hover::after { height: 100%; }
+
+.sdcard-icon { font-size: 2rem; margin-bottom: 1.5rem; opacity: 0.8; }
+
+.sdcard-name {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 0.8rem;
+}
+.sdcard-name em { color: var(--green); font-style: italic; }
+
+.sdcard-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.sdcard-price {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--green);
+  font-weight: 500;
+  display: inline-block;
+  border: 1px solid rgba(61,220,132,0.3);
+  padding: 0.35rem 0.9rem;
+  border-radius: 100px;
+}
+
+/* ── WORK PAGE ── */
+.work-hero {
+  padding: 10rem 4rem 5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.work-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: var(--border);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  margin: 4rem;
+}
+
+.work-card {
+  background: var(--bg);
+  padding: 2.5rem 2rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  position: relative;
   overflow: hidden;
 }
+.work-card:hover { background: var(--bg-1); }
 
-.result-card {
-  background: var(--bg-1);
-  padding: 2.2rem;
-  transition: background 0.25s;
+.work-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s;
 }
+.work-card:hover::before { transform: scaleX(1); }
 
-.result-card:hover { background: var(--bg-2); }
-
-.result-client {
-  font-size: 0.66rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+.work-tag {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
   color: var(--green);
-  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
 }
 
-.result-industry {
-  font-size: 0.78rem;
-  font-weight: 300;
-  color: var(--muted);
-  margin-bottom: 1.8rem;
-}
-
-.result-num {
+.work-client {
   font-family: var(--serif);
-  font-size: 3rem;
+  font-size: 1.3rem;
   font-weight: 400;
-  color: var(--white);
-  line-height: 1;
   margin-bottom: 0.6rem;
 }
 
-.result-desc {
-  font-size: 0.82rem;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.8;
-  margin-bottom: 2rem;
-}
-
-.result-line {
-  height: 1px;
-  background: var(--border);
-  margin-bottom: 1.4rem;
-}
-
-.result-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-
-/* TESTIMONIAL */
-.testimonial {
-  background: var(--bg);
-  padding: 7rem 3.5rem;
-  text-align: center;
-}
-
-.testimonial-inner { max-width: 680px; margin: 0 auto; }
-
-.quote-mark {
-  font-family: var(--serif);
-  font-size: 4rem;
-  color: var(--green);
-  opacity: 0.3;
-  line-height: 0.4;
-  margin-bottom: 2.5rem;
-}
-
-blockquote {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-  font-weight: 400;
-  color: var(--white);
-  line-height: 1.55;
-  margin-bottom: 2rem;
-}
-
-cite {
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-style: normal;
-}
-
-/* CTA */
-.cta {
-  background: var(--bg-1);
-  padding: 8rem 3.5rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.cta::before {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px; height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(61,220,132,0.04) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.cta h2 { font-size: clamp(2.5rem, 5vw, 4.2rem); margin-bottom: 1.2rem; position: relative; }
-
-.cta p {
-  font-size: 0.93rem;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.9;
-  max-width: 340px;
-  margin: 0 auto 3rem;
-  position: relative;
-}
-
-.cta-btns {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.2rem;
-  flex-wrap: wrap;
-  position: relative;
-}
-
-.btn-outline {
-  background: transparent;
-  color: var(--muted);
-  font-family: var(--sans);
+.work-desc {
   font-size: 0.8rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  padding: 0.85rem 2rem;
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  transition: border-color 0.25s, color 0.25s;
+  color: var(--muted);
+  line-height: 1.65;
 }
 
-.btn-outline:hover { border-color: var(--border-hover); color: var(--white); }
-
-/* FOOTER */
+/* ── FOOTER ── */
 footer {
-  background: var(--bg);
   border-top: 1px solid var(--border);
-  padding: 2.5rem 3.5rem;
+  padding: 3rem 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
 }
 
 .footer-logo {
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--white);
+  font-family: var(--serif);
+  font-size: 1rem;
 }
+.footer-logo em { color: var(--green); font-style: italic; }
 
-.footer-logo em { font-style: normal; color: var(--green); }
-
-.footer-links { display: flex; gap: 2rem; list-style: none; }
-
-.footer-links a {
-  font-size: 0.76rem;
-  font-weight: 300;
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.footer-links button {
+  font-family: var(--sans);
+  font-size: 0.75rem;
   color: var(--muted);
-  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.04em;
   transition: color 0.2s;
 }
-
-.footer-links a:hover { color: var(--white); }
+.footer-links button:hover { color: var(--white); }
 
 .footer-copy {
-  font-size: 0.7rem;
-  font-weight: 300;
+  font-family: var(--mono);
+  font-size: 0.65rem;
   color: var(--muted-2);
+  letter-spacing: 0.1em;
 }
 
-/* REVEAL */
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.75s ease, transform 0.75s ease;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
 }
-
 .reveal.in { opacity: 1; transform: none; }
-.d1 { transition-delay: 0.1s; }
-.d2 { transition-delay: 0.2s; }
-.d3 { transition-delay: 0.3s; }
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  nav { padding: 1.2rem 1.5rem; }
-  .nav-links { display: none; }
-  section { padding: 5rem 1.5rem; }
-  .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 4rem; gap: 3rem; }
-  .hero-right { display: none; }
-  .services-top, .results-top { grid-template-columns: 1fr; }
-  .services-grid, .results-grid { grid-template-columns: 1fr; }
-  .process-layout { grid-template-columns: 1fr; }
-  .aside { display: none; }
-  footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
-  .footer-links { flex-wrap: wrap; justify-content: center; }
-  .cta, .testimonial { padding: 5rem 1.5rem; }
-}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">Stockton <em>Black</em></a>
+  <a class="nav-logo" onclick="showPage('home')">Stockton <em>Black</em></a>
   <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#results">Results</a></li>
-    <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+    <li><button onclick="showPage('home')" id="nav-home" class="active">Home</button></li>
+    <li><button onclick="showPage('services')" id="nav-services">Services</button></li>
+    <li><button onclick="showPage('work')" id="nav-work">Our Work</button></li>
+    <li><button onclick="showPage('contact')" class="nav-cta">Get In Touch</button></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-left">
-    <p class="hero-tag"><span class="hero-dot"></span>Performance Advertising</p>
-    <h1>Advertising that<br><em>moves</em> the needle.</h1>
-    <p class="hero-sub">We design and manage advertising programs that grow revenue — across paid media, social, and creative. Precise, accountable, built for the long run.</p>
+<!-- ════════════════════ HOME PAGE ════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-label">VFX · Motion Design · Advertising · After Effects</p>
+    <h1>Content that <em>stops</em><br>the scroll.</h1>
+    <p class="hero-sub">High-end visual effects, motion design, and paid advertising for brands, creators, and organizations. 15+ years of After Effects experience — cinematic quality, every frame.</p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Start a conversation</a>
-      <a href="#results" class="btn-ghost">See our work <span>→</span></a>
+      <button class="btn-primary" onclick="showPage('services')">View Services</button>
+      <button class="btn-outline" onclick="showPage('work')">See My Work</button>
     </div>
-  </div>
-  <div class="hero-right">
-    <div class="stat-card">
-      <div class="stat-num"><em>$40M+</em></div>
-      <div class="stat-label">Ad spend managed across all clients</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">3.8<em>×</em></div>
-      <div class="stat-label">Average return on ad spend</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">120<em>+</em></div>
-      <div class="stat-label">Brands scaled since founding</div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-track">
-    <span class="ticker-item">Paid Media</span><span class="ticker-sep"> · </span>
-    <span class="ticker-item">Meta Ads</span><span class="ticker-sep"> · </span>
-    <span class="ticker-item">Google Ads</span><span class="ticker-sep"> · </span>
-    <span class="ticker-item">Creative Production</span><span class="ticker-sep"> · </span>
-    <span class="ticker-item">Social Media</span><span class="ticker-sep"> · </span>
-    <span class="ticker-item">Performance Marketing</span><span class="ticker-sep"> · </span>
-    <span class="ticker-item">Video Ads</span><span class="ticker-sep"> · </span>
-    <span class="ticker-item">Brand Strategy</span><span class="ticker-sep"> · </span>
-    <span class="ticker-item">Paid Media</span><span class="ticker-sep"> · </span>
-    <span class="ticker-item">Meta Ads</span><span class="ticker-sep"> · </span>
-    <span class="ticker-item">Google Ads</span><span class="ticker-sep"> · </span>
-    <span class="ticker-item">Creative Production</span><span class="ticker-sep"> · </span>
-    <span class="ticker-item">Social Media</span><span class="ticker-sep"> · </span>
-    <span class="ticker-item">Performance Marketing</span><span class="ticker-sep"> · </span>
-    <span class="ticker-item">Video Ads</span><span class="ticker-sep"> · </span>
-    <span class="ticker-item">Brand Strategy</span><span class="ticker-sep"> · </span>
+  <!-- STATS -->
+  <div class="stats-strip reveal">
+    <div class="stat-item">
+      <div class="stat-num">15+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">12+</div>
+      <div class="stat-label">Notable Clients</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3–7</div>
+      <div class="stat-label">Day Turnaround</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">AE</div>
+      <div class="stat-label">Primary Tool</div>
+    </div>
   </div>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="section reveal">
+    <p class="section-label">What I Do</p>
+    <h2 class="section-title">Motion & VFX that <em>performs.</em></h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <div class="service-name">VFX & Motion Graphics</div>
+        <div class="service-desc">Cinematic visual effects, compositing, and motion design for ads, films, and branded content.</div>
+        <div class="service-price">From $500 / project</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">▶</div>
+        <div class="service-name">Video Editing & Post</div>
+        <div class="service-desc">Full post-production editing with color, sound design, and motion graphics baked in.</div>
+        <div class="service-price">From $500 / project</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✦</div>
+        <div class="service-name">Logo & Brand Animation</div>
+        <div class="service-desc">Animated logo reveals and brand identity motion packages for social and broadcast.</div>
+        <div class="service-price">From $200 / project</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <div class="service-name">Social Media Content</div>
+        <div class="service-desc">Reels, TikToks, and short-form video ads built to stop the scroll and drive action.</div>
+        <div class="service-price">From $250 / video</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎯</div>
+        <div class="service-name">Ad Creative (UGC/Paid)</div>
+        <div class="service-desc">AI-enhanced video ads for Meta and YouTube — cutting-edge tools combined with VFX polish for the highest-converting creative possible.</div>
+        <div class="service-price">From $300 / ad</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📦</div>
+        <div class="service-name">Monthly Retainer</div>
+        <div class="service-desc">Ongoing content partnership for brands needing consistent, high-quality video output.</div>
+        <div class="service-price">From $1,000 / mo</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📣</div>
+        <div class="service-name">Paid Advertising</div>
+        <div class="service-desc">Meta and Google ad campaign strategy, setup, and management — paired with custom creative to maximize performance and ROI.</div>
+        <div class="service-price">From $500 / mo</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section class="clients-section reveal">
+    <p class="clients-label">Trusted By</p>
+    <div class="clients-grid">
+      <div class="client-item featured">The Church of Jesus Christ<br>of Latter-day Saints</div>
+      <div class="client-item">Two Rivers<br>Coffee</div>
+      <div class="client-item">Independent<br>Solar</div>
+      <div class="client-item">Rapid<br>Radios</div>
+      <div class="client-item">The Carpet<br>Guys</div>
+      <div class="client-item">Rise<br>Bar</div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section reveal">
+    <p class="section-label">How It Works</p>
+    <h2 class="section-title">Simple process.<br><em>Exceptional</em> output.</h2>
+    <div class="process-grid">
+      <div class="process-step">
+        <span class="step-num">01</span>
+        <div class="step-title">Discovery</div>
+        <div class="step-desc">Quick call to understand your goals, brand, and creative vision</div>
+      </div>
+      <div class="process-step">
+        <span class="step-num">02</span>
+        <div class="step-title">Concept</div>
+        <div class="step-desc">Creative direction and timeline delivered for your approval</div>
+      </div>
+      <div class="process-step">
+        <span class="step-num">03</span>
+        <div class="step-title">Production</div>
+        <div class="step-desc">Fast turnaround with progress updates every step of the way</div>
+      </div>
+      <div class="process-step">
+        <span class="step-num">04</span>
+        <div class="step-title">Delivery</div>
+        <div class="step-desc">Final files in any format, ready to publish or broadcast</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonial-section reveal">
+    <div class="testimonial">
+      <p class="testimonial-quote">"Stockton brings a level of <em>cinematic quality</em> you don't usually see in freelance work. Fast, professional, and the results speak for themselves."</p>
+      <p class="testimonial-author">— Client, Salt Lake Valley</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section reveal">
+    <div>
+      <h2 class="cta-title">Let's make something <em>great.</em></h2>
+      <p class="cta-sub">Currently accepting new clients. Turnaround typically 3–7 business days. Retainer spots are limited — reach out to lock in your rate.</p>
+      <div class="hero-actions" style="margin-top:2rem;">
+        <button class="btn-primary" onclick="showPage('contact')">Get In Touch</button>
+      </div>
+    </div>
+    <div class="cta-contact">
+      <p>Email <span>stocktonblack33@gmail.com</span></p>
+      <p>Phone <span>(208) 915-9113</span></p>
+      <p>Portfolio <span>stocktonblack.com</span></p>
+      <p>Instagram <span>@stockton_isnot_black</span></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Stockton <em>Black</em></div>
+    <ul class="footer-links">
+      <li><button onclick="showPage('home')">Home</button></li>
+      <li><button onclick="showPage('services')">Services</button></li>
+      <li><button onclick="showPage('work')">Our Work</button></li>
+      <li><button onclick="showPage('contact')">Contact</button></li>
+    </ul>
+    <p class="footer-copy">© 2026 Stockton Black · Salt Lake Valley, UT</p>
+  </footer>
 </div>
 
-<!-- SERVICES -->
-<section class="services" id="services">
-  <div class="services-top">
-    <div>
-      <p class="label">What we do</p>
-      <h2>Capabilities built<br>for <em>growth.</em></h2>
-    </div>
-    <p class="section-sub">Every service is designed around measurable outcomes. We work closely with your team to understand what growth actually means for your business.</p>
-  </div>
-  <div class="services-grid">
-    <div class="svc reveal">
-      <div class="svc-num">01</div>
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-      </div>
-      <h3>Paid Advertising</h3>
-      <p>Full-funnel campaigns across Meta, Google, and TikTok — built with rigorous targeting, structured testing, and clear performance benchmarks.</p>
-      <div class="svc-tags">
-        <span class="tag">Meta Ads</span>
-        <span class="tag">Google Ads</span>
-        <span class="tag">TikTok</span>
-        <span class="tag">YouTube</span>
-      </div>
-    </div>
-    <div class="svc reveal d1">
-      <div class="svc-num">02</div>
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      </div>
-      <h3>Social Media</h3>
-      <p>Content programs that build real audiences and drive engagement — not vanity metrics. Strategy, creation, and community management in one place.</p>
-      <div class="svc-tags">
-        <span class="tag">Strategy</span>
-        <span class="tag">Content</span>
-        <span class="tag">Community</span>
-      </div>
-    </div>
-    <div class="svc reveal d2">
-      <div class="svc-num">03</div>
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-      </div>
-      <h3>Creative & Video</h3>
-      <p>Ad creative that earns attention and converts. We produce video, static, and UGC-style content designed specifically for paid performance.</p>
-      <div class="svc-tags">
-        <span class="tag">Video</span>
-        <span class="tag">UGC</span>
-        <span class="tag">Static</span>
-        <span class="tag">Copy</span>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ════════════════════ SERVICES PAGE ════════════════════ -->
+<div class="page" id="page-services">
 
-<!-- PROCESS -->
-<section class="process" id="process">
-  <div class="process-layout">
-    <div>
-      <div class="process-head">
-        <p class="label">How we work</p>
-        <h2>A considered<br>approach to <em>scale.</em></h2>
-      </div>
-      <div>
-        <div class="step reveal">
-          <div class="step-n">01</div>
-          <div>
-            <h3>Discovery & Audit</h3>
-            <p>We start by understanding your business deeply — your customers, margins, existing performance, and where the real opportunity lies.</p>
-          </div>
-        </div>
-        <div class="step reveal d1">
-          <div class="step-n">02</div>
-          <div>
-            <h3>Strategy & Architecture</h3>
-            <p>A clear campaign blueprint — channel selection, funnel structure, creative direction, and testing framework — before a single dollar is spent.</p>
-          </div>
-        </div>
-        <div class="step reveal d2">
-          <div class="step-n">03</div>
-          <div>
-            <h3>Launch & Optimize</h3>
-            <p>We launch with discipline, monitor closely, and iterate continuously. Weekly reporting keeps you informed at the right level of detail.</p>
-          </div>
-        </div>
-        <div class="step reveal d3">
-          <div class="step-n">04</div>
-          <div>
-            <h3>Scale What Works</h3>
-            <p>Once we've identified winners, we scale systematically — expanding budgets, markets, and channels while protecting efficiency.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="aside">
-      <div class="aside-main">
-        <div class="aside-big">3.8×</div>
-        <p class="aside-desc">Average return on ad spend across our active client base over the past 12 months.</p>
-      </div>
-      <div class="aside-grid">
-        <div class="aside-mini">
-          <div class="aside-mini-num">47%</div>
-          <div class="aside-mini-label">CPA reduction</div>
-        </div>
-        <div class="aside-mini">
-          <div class="aside-mini-num">2.1×</div>
-          <div class="aside-mini-label">Revenue growth</div>
-        </div>
-        <div class="aside-mini">
-          <div class="aside-mini-num">30d</div>
-          <div class="aside-mini-label">To first launch</div>
-        </div>
-        <div class="aside-mini">
-          <div class="aside-mini-num">100%</div>
-          <div class="aside-mini-label">Transparent data</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  <section class="services-hero">
+    <p class="hero-label" style="opacity:1;">Services</p>
+    <h1 style="font-family:var(--serif);font-size:clamp(3rem,7vw,5.5rem);font-weight:400;line-height:1;">Every frame, <em style="color:var(--green);font-style:italic;">crafted.</em></h1>
+    <p style="font-size:1rem;color:var(--muted);max-width:520px;line-height:1.7;margin-top:1.5rem;">From single logo animations to full monthly content retainers — everything is built with 15+ years of After Effects expertise and a genuine obsession with quality.</p>
+  </section>
 
-<!-- RESULTS -->
-<section class="results" id="results">
-  <div class="results-top">
-    <div>
-      <p class="label">Results</p>
-      <h2>Performance<br>that <em>speaks.</em></h2>
-    </div>
-    <p class="section-sub">A selection of outcomes we've delivered. Every number is real, every campaign is ours.</p>
-  </div>
-  <div class="results-grid">
-    <div class="result-card reveal">
-      <div class="result-client">E-Commerce Brand</div>
-      <div class="result-industry">Health & Wellness</div>
-      <div class="result-num">412%</div>
-      <p class="result-desc">Revenue growth over 90 days through a restructured Meta funnel and new creative strategy.</p>
-      <div class="result-line"></div>
-      <div class="result-tags">
-        <span class="tag">Meta Ads</span>
-        <span class="tag">Creative</span>
+  <section class="services-detail">
+    <div class="services-detail-grid">
+      <div class="service-detail-card">
+        <div class="sdcard-icon">⚡</div>
+        <h3 class="sdcard-name">VFX & <em>Motion Graphics</em></h3>
+        <p class="sdcard-desc">Cinematic visual effects and compositing built for ads, branded films, and social content. Whether it's a full VFX sequence or a polished motion graphic overlay, every frame is treated with broadcast-level care.</p>
+        <span class="sdcard-price">From $500 / project</span>
+      </div>
+      <div class="service-detail-card">
+        <div class="sdcard-icon">▶</div>
+        <h3 class="sdcard-name">Video Editing <em>& Post</em></h3>
+        <p class="sdcard-desc">Full post-production including editing, color grading, sound design, and motion graphics. I handle the entire post pipeline so you get a polished, broadcast-ready deliverable without the back-and-forth.</p>
+        <span class="sdcard-price">From $500 / project</span>
+      </div>
+      <div class="service-detail-card">
+        <div class="sdcard-icon">✦</div>
+        <h3 class="sdcard-name">Logo & <em>Brand Animation</em></h3>
+        <p class="sdcard-desc">Animated logo reveals and full brand identity motion packages. From simple, elegant reveals to complex multi-element animations — everything delivered in formats ready for social, web, and broadcast.</p>
+        <span class="sdcard-price">From $200 / project</span>
+      </div>
+      <div class="service-detail-card">
+        <div class="sdcard-icon">📱</div>
+        <h3 class="sdcard-name">Social Media <em>Content</em></h3>
+        <p class="sdcard-desc">Reels, TikToks, and short-form video ads engineered to stop the scroll. Built with platform-native formats, trending hooks, and motion-enhanced visuals that stand out in any feed.</p>
+        <span class="sdcard-price">From $250 / video</span>
+      </div>
+      <div class="service-detail-card">
+        <div class="sdcard-icon">🎯</div>
+        <h3 class="sdcard-name">Ad Creative <em>(UGC/Paid)</em></h3>
+        <p class="sdcard-desc">AI-enhanced video ads for Meta and YouTube that are built to convert — not just look good. Cutting-edge AI tools combined with VFX polish to produce the highest-performing creative possible.</p>
+        <span class="sdcard-price">From $300 / ad</span>
+      </div>
+      <div class="service-detail-card">
+        <div class="sdcard-icon">📦</div>
+        <h3 class="sdcard-name">Monthly <em>Retainer</em></h3>
+        <p class="sdcard-desc">An ongoing creative partnership for brands that need consistent, high-quality video output. Retainer clients get priority scheduling, locked-in rates, and a dedicated creative ally who knows your brand inside out.</p>
+        <span class="sdcard-price">From $1,000 / mo</span>
+      </div>
+      <div class="service-detail-card">
+        <div class="sdcard-icon">📣</div>
+        <h3 class="sdcard-name">Paid <em>Advertising</em></h3>
+        <p class="sdcard-desc">Full-service Meta and Google ad campaign management — from strategy and audience targeting to creative production and performance optimization. A rare combo: someone who can run your ads AND make them.</p>
+        <span class="sdcard-price">From $500 / mo</span>
       </div>
     </div>
-    <div class="result-card reveal d1">
-      <div class="result-client">SaaS Platform</div>
-      <div class="result-industry">B2B Software</div>
-      <div class="result-num">68%</div>
-      <p class="result-desc">Reduction in cost per lead on Google Search after rebuilding campaign structure and landing pages.</p>
-      <div class="result-line"></div>
-      <div class="result-tags">
-        <span class="tag">Google Ads</span>
-        <span class="tag">CRO</span>
-      </div>
-    </div>
-    <div class="result-card reveal d2">
-      <div class="result-client">DTC Brand</div>
-      <div class="result-industry">Home & Lifestyle</div>
-      <div class="result-num">5.2×</div>
-      <p class="result-desc">ROAS in the first month of TikTok, driven by in-house video creative and rapid testing cycles.</p>
-      <div class="result-line"></div>
-      <div class="result-tags">
-        <span class="tag">TikTok Ads</span>
-        <span class="tag">Video</span>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- TESTIMONIAL -->
-<div class="testimonial">
-  <div class="testimonial-inner">
-    <div class="quote-mark">"</div>
-    <blockquote>Stockton Black brought clarity to our advertising. Within four months, revenue had tripled — and we finally understood exactly why.</blockquote>
-    <cite>Jordan M., CEO — Ridge Supply Co.</cite>
-  </div>
+  <!-- PROCESS on services page -->
+  <section class="section" style="border-top:1px solid var(--border);">
+    <p class="section-label">Process</p>
+    <h2 class="section-title">How every project <em>runs.</em></h2>
+    <div class="process-grid">
+      <div class="process-step">
+        <span class="step-num">01</span>
+        <div class="step-title">Discovery</div>
+        <div class="step-desc">Quick call to understand your goals, brand, and creative vision</div>
+      </div>
+      <div class="process-step">
+        <span class="step-num">02</span>
+        <div class="step-title">Concept</div>
+        <div class="step-desc">Creative direction and timeline delivered for your approval</div>
+      </div>
+      <div class="process-step">
+        <span class="step-num">03</span>
+        <div class="step-title">Production</div>
+        <div class="step-desc">Fast turnaround with progress updates every step of the way</div>
+      </div>
+      <div class="process-step">
+        <span class="step-num">04</span>
+        <div class="step-title">Delivery</div>
+        <div class="step-desc">Final files in any format, ready to publish or broadcast</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Stockton <em>Black</em></div>
+    <ul class="footer-links">
+      <li><button onclick="showPage('home')">Home</button></li>
+      <li><button onclick="showPage('services')">Services</button></li>
+      <li><button onclick="showPage('work')">Our Work</button></li>
+      <li><button onclick="showPage('contact')">Contact</button></li>
+    </ul>
+    <p class="footer-copy">© 2026 Stockton Black · Salt Lake Valley, UT</p>
+  </footer>
 </div>
 
-<!-- CTA -->
-<section class="cta" id="contact">
-  <h2>Ready to <em>grow?</em></h2>
-  <p>Book a free strategy session. We'll review your current setup and share where we'd focus first.</p>
-  <div class="cta-btns">
-    <a href="#" class="btn-primary">Book a strategy call</a>
-    <a href="mailto:hello@stocktonblack.com" class="btn-outline">hello@stocktonblack.com</a>
-  </div>
-</section>
+<!-- ════════════════════ WORK PAGE ════════════════════ -->
+<div class="page" id="page-work">
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">Stockton <em>Black</em></div>
-  <ul class="footer-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#results">Results</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <p class="footer-copy">© 2026 Stockton Black Advertising</p>
-</footer>
+  <section class="work-hero">
+    <p class="hero-label" style="opacity:1;">Our Work</p>
+    <h1 style="font-family:var(--serif);font-size:clamp(3rem,7vw,5.5rem);font-weight:400;line-height:1;">Brands that <em style="color:var(--green);font-style:italic;">trusted</em> the process.</h1>
+    <p style="font-size:1rem;color:var(--muted);max-width:500px;line-height:1.7;margin-top:1.5rem;">A selection of clients and work across VFX, motion design, brand animation, and ad creative.</p>
+  </section>
+
+  <div class="work-grid">
+    <div class="work-card">
+      <div class="work-tag">VFX · Brand Film</div>
+      <h3 class="work-client">The Church of Jesus Christ of Latter-day Saints</h3>
+      <p class="work-desc">Large-scale motion graphics and VFX work for one of the world's largest religious organizations.</p>
+    </div>
+    <div class="work-card">
+      <div class="work-tag">Ad Creative · Social</div>
+      <h3 class="work-client">Rise Bar</h3>
+      <p class="work-desc">High-converting short-form video ads and social content for a national health food brand.</p>
+    </div>
+    <div class="work-card">
+      <div class="work-tag">Brand Animation</div>
+      <h3 class="work-client">Two Rivers Coffee</h3>
+      <p class="work-desc">Logo animation and brand motion package to elevate their identity across digital platforms.</p>
+    </div>
+    <div class="work-card">
+      <div class="work-tag">Social · Ad Creative</div>
+      <h3 class="work-client">Independent Solar</h3>
+      <p class="work-desc">Motion-enhanced ad creative and social content driving lead generation for a Utah solar company.</p>
+    </div>
+    <div class="work-card">
+      <div class="work-tag">Video Editing · VFX</div>
+      <h3 class="work-client">Rapid Radios</h3>
+      <p class="work-desc">Product video editing and VFX work showcasing communication technology for a specialized retailer.</p>
+    </div>
+    <div class="work-card">
+      <div class="work-tag">Social · Brand</div>
+      <h3 class="work-client">The Carpet Guys</h3>
+      <p class="work-desc">Short-form social content and brand video production for a regional home services company.</p>
+    </div>
+  </div>
+
+  <section class="testimonial-section">
+    <div class="testimonial">
+      <p class="testimonial-quote">"The quality was <em>immediately</em> noticeable. Stockton understood our brand without us having to explain it twice."</p>
+      <p class="testimonial-author">— Client, Salt Lake Valley</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Stockton <em>Black</em></div>
+    <ul class="footer-links">
+      <li><button onclick="showPage('home')">Home</button></li>
+      <li><button onclick="showPage('services')">Services</button></li>
+      <li><button onclick="showPage('work')">Our Work</button></li>
+      <li><button onclick="showPage('contact')">Contact</button></li>
+    </ul>
+    <p class="footer-copy">© 2026 Stockton Black · Salt Lake Valley, UT</p>
+  </footer>
+</div>
+
+<!-- ════════════════════ CONTACT PAGE ════════════════════ -->
+<div class="page" id="page-contact">
+
+  <section class="hero" style="min-height:auto;padding-bottom:4rem;">
+    <p class="hero-label" style="opacity:1;">Contact</p>
+    <h1 style="opacity:1;animation:none;">Let's make something <em>great.</em></h1>
+    <p class="hero-sub" style="opacity:1;animation:none;">Currently accepting new clients. Reach out and I'll get back to you within 24 hours.</p>
+  </section>
+
+  <section class="section" style="padding-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;border-top:1px solid var(--border);">
+    <div>
+      <p class="section-label">Get In Touch</p>
+      <div style="display:flex;flex-direction:column;gap:1.8rem;margin-top:1rem;">
+        <div>
+          <p style="font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;color:var(--green);text-transform:uppercase;margin-bottom:0.4rem;">Email</p>
+          <p style="font-size:1rem;color:var(--white);">stocktonblack33@gmail.com</p>
+        </div>
+        <div>
+          <p style="font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;color:var(--green);text-transform:uppercase;margin-bottom:0.4rem;">Phone</p>
+          <p style="font-size:1rem;color:var(--white);">(208) 915-9113</p>
+        </div>
+        <div>
+          <p style="font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;color:var(--green);text-transform:uppercase;margin-bottom:0.4rem;">Portfolio</p>
+          <p style="font-size:1rem;color:var(--white);">stocktonblack.com</p>
+        </div>
+        <div>
+          <p style="font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;color:var(--green);text-transform:uppercase;margin-bottom:0.4rem;">Instagram</p>
+          <p style="font-size:1rem;color:var(--white);">@stockton_isnot_black</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="section-label">Quick Note</p>
+      <div style="display:flex;flex-direction:column;gap:1rem;margin-top:1rem;">
+        <input type="text" placeholder="Your name" style="background:var(--bg-1);border:1px solid var(--border-mid);color:var(--white);font-family:var(--sans);font-size:0.85rem;padding:0.9rem 1.2rem;outline:none;border-radius:4px;width:100%;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-mid)'">
+        <input type="email" placeholder="Your email" style="background:var(--bg-1);border:1px solid var(--border-mid);color:var(--white);font-family:var(--sans);font-size:0.85rem;padding:0.9rem 1.2rem;outline:none;border-radius:4px;width:100%;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-mid)'">
+        <textarea placeholder="Tell me about your project..." rows="5" style="background:var(--bg-1);border:1px solid var(--border-mid);color:var(--white);font-family:var(--sans);font-size:0.85rem;padding:0.9rem 1.2rem;outline:none;border-radius:4px;width:100%;resize:vertical;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-mid)'"></textarea>
+        <button class="btn-primary" style="align-self:flex-start;" onclick="alert('Thanks! Stockton will get back to you within 24 hours.')">Send Message</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Stockton <em>Black</em></div>
+    <ul class="footer-links">
+      <li><button onclick="showPage('home')">Home</button></li>
+      <li><button onclick="showPage('services')">Services</button></li>
+      <li><button onclick="showPage('work')">Our Work</button></li>
+      <li><button onclick="showPage('contact')">Contact</button></li>
+    </ul>
+    <p class="footer-copy">© 2026 Stockton Black · Salt Lake Valley, UT</p>
+  </footer>
+</div>
 
 <script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+  const navBtn = document.getElementById('nav-' + name);
+  if (navBtn) navBtn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  initReveal();
+}
+
+function initReveal() {
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
+}
+
+initReveal();
 </script>
 </body>
 </html>
